@@ -8,7 +8,6 @@ s3_ocha_transformed_key	= os.environ['s3_ocha_wbtransformed_key']
 temp_output_filename = os.environ['temp_output_filename']
 temp_output_filepath = os.environ['temp_output_filepath']	
 wb_feed_url = os.environ['wb_feed_url']
-print('testing')
 def transform_handler(event, context):
     transformIndicators()
     write_to_s3()
