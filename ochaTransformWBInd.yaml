@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  ochaTransformWBInd:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: transformWBInd.transform_handler
+      Runtime: python3.7
+      CodeUri: .
+      Description: ''
+      MemorySize: 512
+      Timeout: 60
+      Role: 'arn:aws:iam::381144527382:role/LambdaS3FullAccess'
+      Environment:
+        Variables:
+          s3_bucketname: unocha-who-transformed
+          s3_ocha_wbtransformed_key: transposed.csv
+          temp_output_filename: temp_output.csv
+          temp_output_filepath: /tmp/
+          wb_feed_url: >-
+            http://api.worldbank.org/v2/en/indicator/SP.POP.TOTL?downloadformat=excel
+      Layers:
+        - 'arn:aws:lambda:us-east-1:381144527382:layer:pandas-xls-lib:1'
+        - 'arn:aws:lambda:us-east-1:381144527382:layer:pandas-xlrd:1'
