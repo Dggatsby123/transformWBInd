@@ -7,7 +7,7 @@ phases:
     commands:
       - npm install time
       - export BUCKET=pipeline-github-lambda
-      - aws cloudformation package --template-file template.yml --s3-bucket $BUCKET --output-template-file outputtemplate.yml
+      - aws cloudformation package --template-file ochaTransformWBInd.yaml --s3-bucket $BUCKET --output-template-file outputtemplate.yml
 artifacts:
   type: zip
   files:
