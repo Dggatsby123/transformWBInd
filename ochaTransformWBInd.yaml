@@ -12,6 +12,11 @@ Resources:
       MemorySize: 512
       Timeout: 60
       Role: 'arn:aws:iam::381144527382:role/LambdaS3FullAccess'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(12 hours)      
       Environment:
         Variables:
           s3_bucketname: unocha-who-transformed
