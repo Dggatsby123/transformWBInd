@@ -16,7 +16,7 @@ Resources:
         Schedule1:
           Type: Schedule
           Properties:
-            Schedule: rate(1 hours)      
+            Schedule: rate(5 minutes)      
       Environment:
         Variables:
           s3_bucketname: unocha-who-transformed
