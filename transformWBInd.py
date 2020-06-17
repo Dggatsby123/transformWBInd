@@ -23,14 +23,14 @@ def write_to_s3( ):
    object = s3_client.upload_file(temp_output_filepath+s3_ocha_transformed_key,s3_bucketname,s3_ocha_transformed_key)
 
 def transformIndicators():
-    df1 = pd.read_excel(wb_feed_url, 'Data', skiprows=3).set_index(['Country Name','Country Code'])
-    df1.drop(['Indicator Name','Indicator Code'], axis=1,inplace=True)
-    df2 = df1.T.unstack(level=1)
-    df2.to_csv(temp_output_filepath+temp_output_filename)
+    dfSource = pd.read_excel(wb_feed_url, 'Data', skiprows=3).set_index(['Country Name','Country Code'])
+    dfSource.drop(['Indicator Name','Indicator Code'], axis=1,inplace=True)
+    dfTransposed = dfSource.T.unstack(level=1)
+    dfTransposed.to_csv(temp_output_filepath+temp_output_filename)
     
     # FIX ME : Since df2 is a series, couldn't override column names, so had to load the dataframe again.
-    df4 = pd.read_csv(temp_output_filepath+temp_output_filename, encoding='utf-8')
-    df4.columns =['Country Name', 'Country Code', 'Year', 'Population total']
-    df4.to_csv(temp_output_filepath+s3_ocha_transformed_key)
+    dfFormatted = pd.read_csv(temp_output_filepath+temp_output_filename, encoding='utf-8')
+    dfFormatted.columns =['Country Name', 'Country Code', 'Year', 'Population total']
+    dfFormatted.to_csv(temp_output_filepath+s3_ocha_transformed_key)
     return
 
