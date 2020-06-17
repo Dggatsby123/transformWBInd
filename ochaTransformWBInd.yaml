@@ -21,7 +21,7 @@ Resources:
         Variables:
           s3_bucketname: unocha-who-transformed
           s3_ocha_wbtransformed_key: transposed.csv
-          s3_ocha_s3_folder:	/Worldbank/
+          s3_ocha_s3_folder: /Worldbank/
           temp_output_filename: temp_output.csv
           temp_output_filepath: /tmp/
           wb_feed_url: >-
